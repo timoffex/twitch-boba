@@ -1,0 +1,5 @@
+# Output files
+dist/
+
+# NPM packages
+node_modules/
