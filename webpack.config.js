@@ -19,7 +19,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'src/video_overlay.html'
+            filename: 'video_overlay.html',
+            template: 'src/video_overlay.html',
         }),
     ]
 }

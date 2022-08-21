@@ -1,6 +1,6 @@
 function component(): Element {
     const elt = document.createElement('div');
-    elt.innerHTML = 'Hello world!';
+    elt.innerHTML = 'Hello world, from TypeScript!';
     return elt;
 }
 

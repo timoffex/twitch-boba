@@ -79,7 +79,7 @@
     "whitelistedPanelUrls": []
   },
   "frontendCommand": "",
-  "frontendFolderName": "public",
+  "frontendFolderName": "dist",
   "name": "Boba Tea",
   "usingRandomFrontendHostingPort": false,
   "version": 3
