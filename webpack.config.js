@@ -11,6 +11,9 @@ module.exports = {
             template: 'src/video_overlay.html',
         }),
     ],
+    resolve: {
+        extensions: ['', '.ts']
+    },
     entry: './src/index.ts',
     mode: 'development',
     module: {

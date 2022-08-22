@@ -1,25 +1,19 @@
 import './video_overlay.scss';
 
-const canvas = document.getElementById('main-overlay') as HTMLCanvasElement;
+import { CanvasManager } from './canvas-manager';
 
-function resizeCanvas() {
-    console.log(`Resizing canvas to ${window.innerWidth} x ${window.innerHeight}`);
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
+const canvasManager = CanvasManager.tryCreate();
 
-window.addEventListener('resize', resizeCanvas);
+canvasManager?.beginPainting({
+    paint: (canvas, ctx) => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-// Paint on the canvas!
-const ctx = canvas.getContext("2d");
-
-if (!ctx) {
-    console.log("No context...");
-} else {
-    function paint() {
-        ctx!.fillRect(50, 50, 100, 100);
-        window.requestAnimationFrame(paint);
+        ctx.beginPath();
+        ctx.arc(
+            canvas.width / 2,
+            canvas.height / 2,
+            Math.min(canvas.width, canvas.height) / 4,
+            0, 2 * Math.PI);
+        ctx.fill();
     }
-
-    window.requestAnimationFrame(paint);
-}
+});
