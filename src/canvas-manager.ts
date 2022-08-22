@@ -36,12 +36,23 @@ export class CanvasManager {
         window.requestAnimationFrame(paint);
     }
 
+    get size(): {width: number, height: number} {
+        return {
+            width: this.canvas.width,
+            height: this.canvas.height,
+        };
+    }
+
     private beganPainting = false;
 
     private constructor(
         private readonly canvas: HTMLCanvasElement,
         private readonly context: CanvasRenderingContext2D) {
         window.addEventListener('resize', () => this.resizeCanvasToFillWindow());
+
+        // Set a good size even if the 'resize' event doesn't fire,
+        // which happens in the Twitch Developer Rig.
+        this.resizeCanvasToFillWindow();
     }
 
     private resizeCanvasToFillWindow() {
