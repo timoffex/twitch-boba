@@ -1,13 +1,14 @@
 import './video_overlay.scss';
 
 import { CanvasManager } from './canvas-manager';
+import { TeaPainter } from './tea-painter';
 
 const circle = {
     x: 400,
     y: 400,
     vx: 0,
     vy: 0,
-    radius: 50
+    radius: 20
 };
 
 const target = {
@@ -15,12 +16,21 @@ const target = {
     y: 400,
 };
 
+const teaPainter = new TeaPainter(
+    /*amplitude=*/10,
+    /*wavelength=*/200,
+    /*wavespeed=*/50,
+    /*stepSize=*/3,
+    /*pathHeight=*/100);
+
 const canvasManager = CanvasManager.tryCreate();
 canvasManager?.beginPainting({
     paint: (canvas, ctx) => {
         moveTowardTarget();
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        teaPainter.paint(canvas, ctx);
 
         ctx.beginPath();
         ctx.arc(
