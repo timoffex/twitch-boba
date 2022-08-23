@@ -2,6 +2,8 @@
 
 ## Development
 
+I recommend editing with VSCode.
+
 I'm using `npm` as the package manager and build system with `webpack`
 to compile and package everything into the final HTML/CSS/JS files.
 
@@ -14,7 +16,8 @@ directly (if not relying on any Twitch APIs).
   necessary when updating the [webpack configuration](./webpack.config.js)
 
 Currently I don't have any non-dev dependencies, meaning no additional
-code is packaged with the extension.
+code is packaged with the extension. Supporting this may require updating
+the [webpack configuration](./webpack.config.js).
 
 ## Structure
 
