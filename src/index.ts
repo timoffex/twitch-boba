@@ -39,6 +39,12 @@ for (let i = 0; i < 4; i++) {
     bobaManager.addViewer();
 }
 
+window.addEventListener('keyup', (evt) => {
+    if (evt.key == 'x') {
+        bobaManager.addViewer();
+    }
+});
+
 canvasManager.beginPainting({
     paint: (canvas, ctx) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
