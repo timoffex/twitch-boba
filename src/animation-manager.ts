@@ -2,7 +2,7 @@ import { Animator } from "./animator";
 
 /** Object that runs all animations. */
 export class AnimationManager {
-    private readonly _animators: Animator[] = [];
+    private readonly _animators = new Set<Animator>();
 
     private _lastUpdateTime: number = 0;
     private _drewFirstFrame: boolean = false;
@@ -12,10 +12,15 @@ export class AnimationManager {
     constructor(params: AnimationManagerParams) {
         this._maxFrameDeltaSeconds = params.maxFrameDeltaSeconds;
     }
-    
+
     /** Adds the {@link animator} to the list of animators to run. */
     addAnimator(animator: Animator): void {
-        this._animators.push(animator);
+        this._animators.add(animator);
+    }
+
+    /** Removes the previously-added {@link animator} from the list of animators to run. */
+    removeAnimator(animator: Animator): void {
+        this._animators.delete(animator);
     }
 
     /** Runs all added animators. */
