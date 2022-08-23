@@ -1,15 +1,27 @@
 import './video_overlay.scss';
 
 import { CanvasManager } from './canvas-manager';
-import { TeaPainter } from './tea-painter';
+import { TeaPainter } from './tea/tea-painter';
 import { Bobum } from './bobum';
+import { Tea } from './tea/tea';
+import { AnimationManager } from './animation-manager';
+import { TeaAnimator } from './tea/tea-animator';
+import { CanvasPainter } from './canvas-painter';
 
-const teaPainter = new TeaPainter(
-    /*amplitude=*/10,
-    /*wavelength=*/200,
-    /*wavespeed=*/50,
-    /*stepSize=*/3,
-    /*pathHeight=*/100);
+const animationManager = new AnimationManager({
+    maxFrameDeltaSeconds: 0.2
+});
+
+const painters: CanvasPainter[] = [];
+
+const tea = new Tea({
+    amplitude: 10,
+    waveLength: 200,
+    waveSpeed: 10,
+    teaHeight: 100,
+});
+animationManager.addAnimator(new TeaAnimator(tea));
+painters.push(new TeaPainter(tea, /*stepSize=*/3));
 
 let boba: Bobum[] = [];
 
@@ -34,7 +46,10 @@ canvasManager?.beginPainting({
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        teaPainter.paint(canvas, ctx);
+        animationManager.updateFrame();
+        for (const painter of painters) {
+            painter.paint(canvas, ctx);
+        }
 
         if (boba.length == 0) {
             console.log('Creating new boba');

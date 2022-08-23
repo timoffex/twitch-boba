@@ -10,15 +10,17 @@ export class Bobum {
     private _isDead = false;
 
     static newAt(position: { x: number, y: number }): Bobum {
+        const { x, y } = position;
+
         const bobum = new Bobum();
-        bobum._position = structuredClone(position);
-        bobum._targetCenter = structuredClone(position);
-        bobum._target = structuredClone(position);
+        bobum._position = { x, y };
+        bobum._targetCenter = { x, y };
+        bobum._target = { x, y };
         return bobum;
     }
 
     get position() {
-        return structuredClone(this._position);
+        return { x: this._position.x, y: this._position.y };
     }
 
     get radius() {
