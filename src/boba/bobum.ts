@@ -1,3 +1,5 @@
+import { BobumMover } from "./movers/bobum-mover";
+
 /**  A bobum is the singular of boba. */
 export class Bobum {
 
@@ -10,19 +12,14 @@ export class Bobum {
     /** The boba's radius in scene coordinates. */
     private _radius = 2.5;
 
-    private _targetCenter = { x: 0, y: 0 };
-    private _target = { x: 0, y: 0 };
+    /** The object controlling this bobum right now. */
+    private _mover: BobumMover;
 
-    private _isDead = false;
-
-    static newAt(position: { x: number, y: number }): Bobum {
-        const { x, y } = position;
-
-        const bobum = new Bobum();
-        bobum._position = { x, y };
-        bobum._targetCenter = { x, y };
-        bobum._target = { x, y };
-        return bobum;
+    constructor(params: BobumParams) {
+        this._position = { x: params.position.x, y: params.position.y };
+        this._velocity = { x: params.velocity.x, y: params.velocity.y };
+        this._radius = params.radius;
+        this._mover = params.mover;
     }
 
     get position() {
@@ -33,48 +30,22 @@ export class Bobum {
         return this._radius;
     }
 
-    updateTargetCenter(x: number, y: number): void {
-        this._targetCenter.x = x;
-        this._targetCenter.y = y;
+    move(seconds: number): void {
+        const state = {
+            position: this._position,
+            velocity: this._velocity,
+        };
+
+        this._mover = this._mover.moveAndReturnNewMover(state, seconds);
+
+        this._position = state.position;
+        this._velocity = state.velocity;
     }
+}
 
-    updatePosition(seconds: number): void {
-        const acceleration = 10;
-
-        let dirX = this._target.x - this._position.x;
-        let dirY = this._target.y - this._position.y;
-        const dirMagnitude = Math.sqrt(dirX * dirX + dirY * dirY);
-        if (dirMagnitude > 0) {
-            dirX /= dirMagnitude;
-            dirY /= dirMagnitude;
-
-            this._velocity.x += dirX * acceleration * seconds;
-            this._velocity.y += dirY * acceleration * seconds;
-        }
-
-        this._velocity.x *= 0.99;
-        this._velocity.y *= 0.99;
-
-        this._position.x += this._velocity.x * seconds;
-        this._position.y += this._velocity.y * seconds;
-    }
-
-    start(): void {
-        this.updateTargetAndRepeat();
-    }
-
-    kill(): void {
-        this._isDead = true;
-    }
-
-    private updateTargetAndRepeat() {
-        this._target.x = this._targetCenter.x + (Math.random() * 2 - 1) * 50;
-        this._target.y = this._targetCenter.y + (Math.random() * 2 - 1) * 50;
-
-        if (!this._isDead) {
-            setTimeout(() => this.updateTargetAndRepeat(), 500 + 1000 * Math.random());
-        }
-    }
-
-    private constructor() { }
+export interface BobumParams {
+    position: { x: number, y: number };
+    velocity: { x: number, y: number };
+    radius: number;
+    mover: BobumMover;
 }

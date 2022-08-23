@@ -6,6 +6,6 @@ export class BobumAnimator implements Animator {
     constructor(private readonly _bobum: Bobum) {}
 
     updateFrame(seconds: number): void {
-        this._bobum.updatePosition(seconds);
+        this._bobum.move(seconds);
     }
 }

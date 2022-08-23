@@ -10,41 +10,36 @@ import { SceneManager } from './scene-manager';
 import { Tea } from './tea/tea';
 import { TeaAnimator } from './tea/tea-animator';
 import { TeaPainter } from './tea/tea-painter';
+import { BobaManager } from './boba/boba-manager';
 
-const canvasManager = CanvasManager.tryCreate();
-const sceneCoords = new SceneCoordinatesConverter(canvasManager!);
+const canvasManager = CanvasManager.tryCreate()!;
+const sceneCoords = new SceneCoordinatesConverter(canvasManager);
 const animationManager = new AnimationManager({
     maxFrameDeltaSeconds: 0.2
 });
 
 const sceneManager = new SceneManager(animationManager);
+const bobaManager = new BobaManager(sceneManager, sceneCoords);
 
+
+// Create Tea object.
 const tea = new Tea({
-    amplitude: 2,
+    amplitude: 1,
     waveLength: 30,
     waveSpeed: 10,
     teaHeight: 10,
 });
-
 sceneManager.addObject({
     animator: new TeaAnimator(tea),
     painter: new TeaPainter(tea, sceneCoords, /*stepSize=*/3),
 })
 
-function addBobum(x: number, y: number) {
-    const bobum = Bobum.newAt({ x, y });
-    sceneManager.addObject({
-        animator: new BobumAnimator(bobum),
-        painter: new BobumPainter(bobum, sceneCoords),
-    });
+// Create some initial boba.
+for (let i = 0; i < 4; i++) {
+    bobaManager.addViewer();
 }
 
-addBobum(20, 5);
-addBobum(40, 5);
-addBobum(60, 5);
-addBobum(80, 5);
-
-canvasManager?.beginPainting({
+canvasManager.beginPainting({
     paint: (canvas, ctx) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 

@@ -10,8 +10,8 @@ import { CanvasPainter } from "./canvas-painter";
  */
 export interface SceneObject {
     /** An optional painter for the object. */
-    painter?: CanvasPainter;
+    readonly painter?: CanvasPainter;
 
     /** An optional animator for the object. */
-    animator?: Animator;
+    readonly animator?: Animator;
 }
