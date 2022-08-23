@@ -21,6 +21,7 @@ export class AnimationManager {
     /** Runs all added animators. */
     updateFrame(): void {
         let timeDelta = (Date.now() - this._lastUpdateTime) / 1000.0;
+        this._lastUpdateTime = Date.now();
 
         if (!this._drewFirstFrame) {
             // Use a 0 delta on first draw because the timeDelta didn't

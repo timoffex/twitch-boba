@@ -1,8 +1,14 @@
-/** A bobum is the singular of boba. */
+/**  A bobum is the singular of boba. */
 export class Bobum {
+
+    /** The boba's position in scene coordinates. */
     private _position = { x: 0, y: 0 };
+
+    /** The boba's velocity in scene coordinates. */
     private _velocity = { x: 0, y: 0 };
-    private _radius = 20;
+
+    /** The boba's radius in scene coordinates. */
+    private _radius = 2.5;
 
     private _targetCenter = { x: 0, y: 0 };
     private _target = { x: 0, y: 0 };
@@ -32,8 +38,7 @@ export class Bobum {
         this._targetCenter.y = y;
     }
 
-    updatePosition(msDelta: number): void {
-        const secondsDelta = msDelta / 1000.0;
+    updatePosition(seconds: number): void {
         const acceleration = 10;
 
         let dirX = this._target.x - this._position.x;
@@ -43,15 +48,15 @@ export class Bobum {
             dirX /= dirMagnitude;
             dirY /= dirMagnitude;
 
-            this._velocity.x += dirX * acceleration * secondsDelta;
-            this._velocity.y += dirY * acceleration * secondsDelta;
+            this._velocity.x += dirX * acceleration * seconds;
+            this._velocity.y += dirY * acceleration * seconds;
         }
 
         this._velocity.x *= 0.99;
         this._velocity.y *= 0.99;
 
-        this._position.x += this._velocity.x * secondsDelta;
-        this._position.y += this._velocity.y * secondsDelta;
+        this._position.x += this._velocity.x * seconds;
+        this._position.y += this._velocity.y * seconds;
     }
 
     start(): void {

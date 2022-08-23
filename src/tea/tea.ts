@@ -1,15 +1,15 @@
 /** The "milk tea" overlay. */
 export class Tea {
-    /** The height of the tea wave in pixels. */
+    /** The height of the tea wave in scene units. */
     readonly amplitude: number;
 
-    /** The distance between peaks of the tea wave, in pixels. */
+    /** The distance between peaks of the tea wave, in scene units. */
     readonly waveLength: number;
 
-    /** The number of pixels the tea wave slides per second to the right.  */
+    /** The number of scene units the tea wave slides per second to the right.  */
     readonly waveSpeed: number;
 
-    /** The amount of vertical space the "tea" area takes up, in pixels. */
+    /** The amount of vertical space the "tea" area takes up, in scene units. */
     readonly teaHeight: number;
 
     private _teaOffset: number = 0;
