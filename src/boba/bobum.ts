@@ -1,4 +1,4 @@
-import { BobumMover } from "./movers/bobum-mover";
+import { BobumMover } from './movers/bobum-mover';
 
 /**  A bobum is the singular of boba. */
 export class Bobum {

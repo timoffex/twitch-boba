@@ -1,5 +1,6 @@
-import { assert } from "console";
-import { CanvasPainter } from "./canvas-painter";
+import { assert } from 'console';
+
+import { CanvasPainter } from './canvas-painter';
 
 /** Object that configures and draws to an HTML canvas. */
 export class CanvasManager {

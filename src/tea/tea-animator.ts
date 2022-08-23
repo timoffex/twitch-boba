@@ -1,5 +1,5 @@
-import { Animator } from "../animator";
-import { Tea } from "./tea";
+import { Animator } from '../animator';
+import { Tea } from './tea';
 
 /** An object that animates a {@link Tea}. */
 export class TeaAnimator implements Animator {

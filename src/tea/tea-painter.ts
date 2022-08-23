@@ -1,6 +1,6 @@
-import { CanvasPainter } from "../canvas-painter";
-import { SceneCoordinatesConverter } from "../scene-coordinates-converter";
-import { Tea } from "./tea";
+import { CanvasPainter } from '../canvas-painter';
+import { SceneCoordinatesConverter } from '../scene-coordinates-converter';
+import { Tea } from './tea';
 
 /**
  * Number of pixels the Path2D extends beyond the canvas in

@@ -1,5 +1,5 @@
-import { Animator } from "./animator";
-import { CanvasPainter } from "./canvas-painter";
+import { Animator } from './animator';
+import { CanvasPainter } from './canvas-painter';
 
 /**
  * A collection of components that an object in a scene may have.

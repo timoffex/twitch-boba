@@ -1,4 +1,4 @@
-import { CanvasManager } from "./canvas-manager";
+import { CanvasManager } from './canvas-manager';
 
 /**
  * A converter between scene coordinates and pixels.

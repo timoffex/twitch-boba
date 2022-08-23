@@ -1,16 +1,13 @@
 import './video_overlay.scss';
 
 import { AnimationManager } from './animation-manager';
-import { Bobum } from './boba/bobum';
-import { BobumAnimator } from './boba/bobum-animator';
-import { BobumPainter } from './boba/bobum-painter';
+import { BobaManager } from './boba/boba-manager';
 import { CanvasManager } from './canvas-manager';
 import { SceneCoordinatesConverter } from './scene-coordinates-converter';
 import { SceneManager } from './scene-manager';
 import { Tea } from './tea/tea';
 import { TeaAnimator } from './tea/tea-animator';
 import { TeaPainter } from './tea/tea-painter';
-import { BobaManager } from './boba/boba-manager';
 
 const canvasManager = CanvasManager.tryCreate()!;
 const sceneCoords = new SceneCoordinatesConverter(canvasManager);

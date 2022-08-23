@@ -1,6 +1,6 @@
-import { CanvasPainter } from "../canvas-painter";
-import { SceneCoordinatesConverter } from "../scene-coordinates-converter";
-import { Bobum } from "./bobum";
+import { CanvasPainter } from '../canvas-painter';
+import { SceneCoordinatesConverter } from '../scene-coordinates-converter';
+import { Bobum } from './bobum';
 
 /** Object that paints a {@link Bobum} on a canvas. */
 export class BobumPainter implements CanvasPainter {

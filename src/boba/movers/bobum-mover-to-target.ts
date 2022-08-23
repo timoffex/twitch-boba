@@ -1,4 +1,4 @@
-import { BobumMover, BobumState } from "./bobum-mover";
+import { BobumMover, BobumState } from './bobum-mover';
 
 /**
  * A mover that accelerates a {@link Bobum} toward a target position until

@@ -1,4 +1,4 @@
-import { Animator } from "./animator";
+import { Animator } from './animator';
 
 /** Object that runs all animations. */
 export class AnimationManager {
