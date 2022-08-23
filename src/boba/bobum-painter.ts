@@ -44,6 +44,7 @@ SMILE_PATH.arc(-0.5, 0.1, 0.07, 0, 2 * Math.PI);
 SMILE_PATH.moveTo(0.5, 0.1);
 SMILE_PATH.arc(0.5, 0.1, 0.07, 0, 2 * Math.PI);
 
+// Smile
 SMILE_PATH.moveTo(-0.3, 0);
 SMILE_PATH.bezierCurveTo(
     -0.1, -0.1,
