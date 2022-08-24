@@ -11,8 +11,12 @@ To test, use Twitch's "Developer Rig", or run the generated HTML file
 directly (if not relying on any Twitch APIs). The [Boba Tea.json](./Boba%20Tea.json)
 file is the Developer Rig configuration, managed by the tool.
 
-* `npm run build` creates the `dist` directory; you can just run the HTML
-  file from there directly
+* `npm run build` creates the `dist` directory **in development mode**; you can just
+  run the HTML file from there directly. This **cannot be uploaded to Twitch**, it
+  will not work.
+* `npm run build -- --mode=production` creates the `dist` directory in **production**
+  mode. You can combine the files in this directory into a single .zip file and
+  upload that to Twitch.
 * `npm install <package> --save-dev` adds a "dev" dependency, which is
   necessary when updating the [webpack configuration](./webpack.config.js)
 
