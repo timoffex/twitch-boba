@@ -8,7 +8,8 @@ I'm using `npm` as the package manager and build system with `webpack`
 to compile and package everything into the final HTML/CSS/JS files.
 
 To test, use Twitch's "Developer Rig", or run the generated HTML file
-directly (if not relying on any Twitch APIs).
+directly (if not relying on any Twitch APIs). The [Boba Tea.json](./Boba%20Tea.json)
+file is the Developer Rig configuration, managed by the tool.
 
 * `npm run build` creates the `dist` directory; you can just run the HTML
   file from there directly
