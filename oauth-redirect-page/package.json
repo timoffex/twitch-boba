@@ -1,0 +1,21 @@
+{
+  "name": "oauth-redirect-page",
+  "version": "0.0.1",
+  "description": "Page linked to by the redirect URI when running the OAuth 2.0 flow.",
+  "private": "true",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timoffex/twitch-boba.git"
+  },
+  "author": "timoffex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timoffex/twitch-boba/issues"
+  },
+  "homepage": "https://github.com/timoffex/twitch-boba#readme"
+}

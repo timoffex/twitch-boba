@@ -1,6 +1,7 @@
 {
     "name": "twitch-boba",
     "workspaces": [
-        "overlay"
+        "overlay",
+        "oauth-redirect-page"
     ]
 }
