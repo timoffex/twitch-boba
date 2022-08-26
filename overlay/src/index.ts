@@ -3,11 +3,20 @@ import './video_overlay.scss';
 import { AnimationManager } from './animation-manager';
 import { BobaManager } from './boba/boba-manager';
 import { CanvasManager } from './canvas-manager';
+import { oauth } from './oauth';
 import { SceneCoordinatesConverter } from './scene-coordinates-converter';
 import { SceneManager } from './scene-manager';
 import { Tea } from './tea/tea';
 import { TeaAnimator } from './tea/tea-animator';
 import { TeaPainter } from './tea/tea-painter';
+
+// Use button to test OAuth 2.0 code.
+document.getElementById('auth-button')
+    ?.addEventListener('click', (evt) => {
+        oauth.refreshToken(['chat:read']);
+        evt.preventDefault();
+    });
+
 
 const canvasManager = CanvasManager.tryCreate()!;
 const sceneCoords = new SceneCoordinatesConverter(canvasManager);
