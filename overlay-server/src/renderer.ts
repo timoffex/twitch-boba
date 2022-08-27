@@ -29,3 +29,14 @@
 import './index.css';
 
 console.log('👋 This message is being logged by "renderer.js", included via webpack');
+
+declare namespace window {
+    namespace electronApi {
+        function doTwitchAuth(): void;
+    }
+}
+
+document.getElementById('login-button')
+    .addEventListener('click', (evt) => {
+        window.electronApi.doTwitchAuth();
+    });
