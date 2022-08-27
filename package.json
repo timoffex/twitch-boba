@@ -4,5 +4,8 @@
         "overlay",
         "overlay-server",
         "oauth-redirect-page"
-    ]
+    ],
+    "devDependencies": {
+        "electron": "^20.1.0"
+    }
 }
