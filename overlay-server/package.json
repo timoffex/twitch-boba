@@ -73,6 +73,7 @@
     "@electron-forge/maker-zip": "^6.0.0-beta.65",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.65",
     "@twitch-boba/overlay": "^0.0.1",
+    "@twitch-boba/oauth-redirect-page": "^0.0.1",
     "@types/node-static": "^0.7.7",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",

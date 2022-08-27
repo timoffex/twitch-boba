@@ -119,7 +119,7 @@ function handleTwitchOauthRequest(
   _req: http.IncomingMessage,
   res: http.ServerResponse
 ): void {
-  res.writeHead(200).end('Authorization complete!');
+  respondWithFile(res, 'text/html', 'public/twitch-oauth/index.html');
 }
 
 function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): void {

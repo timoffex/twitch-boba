@@ -20,6 +20,10 @@ module.exports = {
         {
           from: path.join(path.dirname(require.resolve('@twitch-boba/overlay/package.json')), 'dist/'),
           to: './public/overlay/'
+        },
+        {
+          from: path.join(path.dirname(require.resolve('@twitch-boba/oauth-redirect-page/package.json')), 'dist/'),
+          to: './public/twitch-oauth/'
         }
       ]
     })
