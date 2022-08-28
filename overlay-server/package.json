@@ -75,6 +75,7 @@
     "@twitch-boba/oauth-redirect-page": "^0.0.1",
     "@twitch-boba/overlay": "^0.0.1",
     "@types/node-static": "^0.7.7",
+    "@types/tmi.js": "^1.8.1",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
@@ -91,6 +92,7 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
+    "tmi.js": "^1.8.5",
     "ws": "^8.8.1"
   }
 }
