@@ -4,5 +4,6 @@
 import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld('electronApi', {
-    doTwitchAuth: () => ipcRenderer.send('do-twitch-auth')
+    doTwitchAuth: () => ipcRenderer.send('do-twitch-auth'),
+    addViewer: (username: string) => ipcRenderer.send('add-viewer', username)
 });

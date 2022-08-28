@@ -33,10 +33,17 @@ console.log('👋 This message is being logged by "renderer.js", included via we
 declare namespace window {
     namespace electronApi {
         function doTwitchAuth(): void;
+        function addViewer(username: string): void;
     }
 }
 
 document.getElementById('login-button')
-    .addEventListener('click', (evt) => {
+    ?.addEventListener('click', (evt) => {
         window.electronApi.doTwitchAuth();
+    });
+
+let viewerNumber = 1;
+document.getElementById('test-button')
+    ?.addEventListener('click', (evt) => {
+        window.electronApi.addViewer(`test viewer ${viewerNumber++}`);
     });
