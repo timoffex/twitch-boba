@@ -130,6 +130,21 @@ function handleTwitchOauthRequest(
   respondWithFile(res, 'text/html', 'public/twitch-oauth/index.html');
 }
 
+function handleTwitchOauthPost(
+  req: http.IncomingMessage,
+  res: http.ServerResponse
+): void {
+  const chunks: string[] = [];
+  req.on('data', (chunk) => chunks.push(chunk));
+  req.on('end', () => {
+    console.log(`Got chunks: ${chunks}`);
+    const { access_token, scope } = JSON.parse(chunks.join(''));
+    console.log(`Access token: ${access_token}`);
+    console.log(`Scope: ${scope}`);
+    res.writeHead(200).end();
+  });
+}
+
 function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): void {
   console.log(`Got request at ${req.url}`);
 
@@ -137,6 +152,8 @@ function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): voi
     handleOverlayRequest(req, res);
   } else if (req.url === '/twitch-oauth') {
     handleTwitchOauthRequest(req, res);
+  } else if (req.url === '/twitch-oauth-post') {
+    handleTwitchOauthPost(req, res);
   } else if (req.url?.startsWith('/public/')) {
     handlePublicFileRequest(req, res);
   } else {
