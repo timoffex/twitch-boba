@@ -41,9 +41,19 @@ canvasManager.beginPainting({
 
 const ws = new WebSocket('ws://localhost:8081');
 ws.onmessage = (evt) => {
-    const { usernames } = JSON.parse(evt.data);
-    console.log(`New viewers: ${usernames}`);
-    for (const username of usernames) {
-        bobaManager.addViewer();
+    const { type, data } = JSON.parse(evt.data);
+    if (type === 'updateViewers') {
+        const { add, remove } = data;
+
+        console.log(`Adding viewers: ${add}`);
+        console.log(`Removing viewers: ${remove}`);
+
+        for (const viewer of add) {
+            bobaManager.addViewer(viewer);
+        }
+
+        for(const viewer of remove) {
+            bobaManager.removeViewer(viewer);
+        }
     }
 };

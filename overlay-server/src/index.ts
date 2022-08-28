@@ -43,7 +43,7 @@ const createWindow = (): void => {
   });
 
   ipcMain.on('add-viewer', (_event, username) => {
-    overlayManager.addViewers([username]);
+    overlayManager.viewerIsActive(username);
   });
 
   // and load the index.html of the app.

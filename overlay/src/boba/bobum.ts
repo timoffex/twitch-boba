@@ -3,6 +3,9 @@ import { BobumMover } from './movers/bobum-mover';
 /**  A bobum is the singular of boba. */
 export class Bobum {
 
+    /** The name for this bobum. */
+    readonly name: string;
+
     /** The boba's position in scene coordinates. */
     private _position = { x: 0, y: 0 };
 
@@ -16,6 +19,7 @@ export class Bobum {
     private _mover: BobumMover;
 
     constructor(params: BobumParams) {
+        this.name = params.name;
         this._position = { x: params.position.x, y: params.position.y };
         this._velocity = { x: params.velocity.x, y: params.velocity.y };
         this._radius = params.radius;
@@ -28,6 +32,10 @@ export class Bobum {
 
     get radius() {
         return this._radius;
+    }
+
+    changeMover(newMover: BobumMover): void {
+        this._mover = newMover;
     }
 
     move(seconds: number): void {
@@ -44,6 +52,7 @@ export class Bobum {
 }
 
 export interface BobumParams {
+    name: string;
     position: { x: number, y: number };
     velocity: { x: number, y: number };
     radius: number;

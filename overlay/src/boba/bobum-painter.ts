@@ -13,8 +13,13 @@ export class BobumPainter implements CanvasPainter {
 
         ctx.beginPath();
 
+        const ppu = this._sceneCoords.pixelsPerUnit;
         const position = this._sceneCoords.toPixels(this._bobum.position);
         const radius = this._sceneCoords.pixelsPerUnit * this._bobum.radius;
+
+        ctx.textAlign = 'center';
+        ctx.font = `${ppu * 1.5}px sans-serif`;
+        ctx.fillText(this._bobum.name, position.x, position.y - ppu * 3.5);
 
         ctx.translate(position.x, position.y);
         ctx.scale(radius, radius);

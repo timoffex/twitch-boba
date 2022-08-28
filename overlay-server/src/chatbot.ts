@@ -56,23 +56,12 @@ class ChannelListener {
         this._client.connect().then(() => {
             if (this._stopped) return;
 
-            console.log('Connected!');
+            console.log('Chatbot connected!');
 
-            this._client.on('raw_message', (msg) => {
-                console.log(JSON.stringify(msg));
-            });
-
-            this._client.on('join', (channel, username, self) => {
-                if (this._stopped) return;
-
-                console.log(`User ${username} joined ${channel}! It is${self ? '' : ' not'} me!`);
-                this._overlayManager.addViewers([username]);
-            });
-
-            this._client.on('part', (channel, username, self) => {
-                if (this._stopped) return;
-
-                console.log(`User ${username} left ${channel}! It is${self ? '' : ' not'} me!`);
+            this._client.on('message', (_channel, userstate, _message, _self) => {
+                if (userstate.username) {
+                    this._overlayManager.viewerIsActive(userstate.username);
+                }
             });
         });
     }
