@@ -14,6 +14,11 @@ export class OverlayManager {
         this._server.on('connection', (ws) => {
             this._clients.add(ws);
 
+            ws.send(JSON.stringify({
+                type: 'initialState',
+                data: { usernames: Array.from(this._addedViewers) },
+            }));
+
             ws.on('close', () => {
                 this._clients.delete(ws);
             });
