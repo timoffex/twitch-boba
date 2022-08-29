@@ -1,4 +1,4 @@
-import { CanvasPainter } from '../canvas-painter';
+import { SceneCanvasPainter } from '../scene-canvas-painter';
 import { SceneCoordinatesConverter } from '../scene-coordinates-converter';
 import { Tea } from './tea';
 
@@ -9,10 +9,9 @@ import { Tea } from './tea';
 const BUFFER = 10;
 
 /** An object that paints a {@link Tea} on an HTML canvas. */
-export class TeaPainter implements CanvasPainter {
+export class TeaPainter implements SceneCanvasPainter {
     private _lastCanvasWidth = 0;
     private _path: Path2D | undefined;
-    private _gradient: CanvasGradient | undefined;
 
     constructor(
         /** The {@link Tea} object to paint. */
@@ -29,19 +28,56 @@ export class TeaPainter implements CanvasPainter {
          */
         private readonly _stepSize: number) { }
 
-    paint(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void {
+    paintTeaBack(
+        canvas: HTMLCanvasElement,
+        ctx: CanvasRenderingContext2D,
+    ): void {
+        const gradient = ctx.createLinearGradient(
+            canvas.width / 2, 0,
+            canvas.width / 2, this._sceneCoords.pixelsPerUnit * this._tea.teaHeight);
+        gradient.addColorStop(0.0, 'rgba(152,109,0,0.5)');
+        gradient.addColorStop(0.4, 'rgba(140,94,0,0.5)');
+        gradient.addColorStop(1.0, 'rgba(255,219,164,0.5)');
+
+        this.paintWave(canvas, ctx, {
+            gradient: gradient,
+            xOffsetUnits: this._tea.backTeaOffset,
+            yOffsetUnits: 0,
+        });
+    }
+
+    paintTeaFront(
+        canvas: HTMLCanvasElement,
+        ctx: CanvasRenderingContext2D,
+    ): void {
+        const gradient = ctx.createLinearGradient(
+            canvas.width / 2, 0,
+            canvas.width / 2, this._sceneCoords.pixelsPerUnit * this._tea.teaHeight);
+        gradient.addColorStop(0.0, 'rgba(152,109,0,0.5)');
+        gradient.addColorStop(0.4, 'rgba(140,94,0,0.5)');
+        gradient.addColorStop(1.0, 'rgba(255,219,164,0.5)');
+
+        this.paintWave(canvas, ctx, {
+            gradient: gradient,
+            xOffsetUnits: this._tea.frontTeaOffset,
+            yOffsetUnits: -this._tea.teaHeight * 0.3,
+        });
+    }
+
+    private paintWave(
+        canvas: HTMLCanvasElement,
+        ctx: CanvasRenderingContext2D,
+        options: {
+            gradient: CanvasGradient,
+            xOffsetUnits: number,
+            yOffsetUnits: number,
+        }
+    ): void {
         const ppu = this._sceneCoords.pixelsPerUnit;
 
         // Always remake the path to be at least as wide as the canvas.
         if (!this._path || this._lastCanvasWidth != canvas.width) {
             this.regeneratePath(canvas.width);
-
-            this._gradient = ctx.createLinearGradient(
-                canvas.width / 2, 0,
-                canvas.width / 2, ppu * this._tea.teaHeight);
-            this._gradient.addColorStop(0.0, 'rgba(152,109,0,0.5)');
-            this._gradient.addColorStop(0.4, 'rgba(140,94,0,0.5)');
-            this._gradient.addColorStop(1.0, 'rgba(255,219,164,0.5)');
         }
 
         ctx.save();
@@ -50,11 +86,11 @@ export class TeaPainter implements CanvasPainter {
         // teaOffset is between 0 and waveLength. This means the xOffset will be
         // between (-waveLength - BUFFER) and (-BUFFER), making it so that the path
         // always extends at least BUFFER pixels off-screen in each direction.
-        const xOffset = ppu * (this._tea.teaOffset - this._tea.waveLength) - BUFFER;
-        const yOffset = canvas.height - ppu * this._tea.teaHeight;
+        const xOffset = ppu * (options.xOffsetUnits - this._tea.waveLength) - BUFFER;
+        const yOffset = canvas.height - ppu * (this._tea.teaHeight + options.yOffsetUnits);
 
         ctx.translate(xOffset, yOffset);
-        ctx.fillStyle = this._gradient!;
+        ctx.fillStyle = options.gradient;
         ctx.fill(this._path!);
 
         ctx.restore();

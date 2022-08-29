@@ -1,6 +1,5 @@
 import { assert } from 'console';
 
-import { CanvasPainter } from './canvas-painter';
 
 /** Object that configures and draws to an HTML canvas. */
 export class CanvasManager {
@@ -60,4 +59,11 @@ export class CanvasManager {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
     }
+}
+
+export interface CanvasPainter {
+    paint(
+        canvas: HTMLCanvasElement,
+        ctx: CanvasRenderingContext2D,
+    ): void;
 }
