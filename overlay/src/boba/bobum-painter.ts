@@ -28,7 +28,7 @@ export class BobumPainter implements SceneCanvasPainter {
         ctx.scale(radius, radius);
         ctx.rotate(Math.PI);
 
-        ctx.fillStyle = '#B28137';
+        ctx.fillStyle = this._bobum.color;
         ctx.fill(CIRCLE_PATH);
 
         ctx.lineWidth = 0.1;

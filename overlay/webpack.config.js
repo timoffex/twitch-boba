@@ -24,7 +24,7 @@ module.exports = {
     },
     output: {
         filename: 'main.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist/public/overlay/'),
         publicPath: '/public/overlay/',
     },
     externals: [nodeExternals()],

@@ -18,7 +18,7 @@ module.exports = {
     new CopyFilesPlugin({
       patterns: [
         {
-          from: path.join(path.dirname(require.resolve('@twitch-boba/overlay/package.json')), 'dist/'),
+          from: path.join(path.dirname(require.resolve('@twitch-boba/overlay/package.json')), 'dist/public/overlay/'),
           to: './public/overlay/'
         },
         {

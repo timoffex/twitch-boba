@@ -6,6 +6,9 @@ export class Bobum {
     /** The name for this bobum. */
     readonly name: string;
 
+    /** The CSS color string defining this bobum's color. */
+    readonly color: string;
+
     /** The boba's position in scene coordinates. */
     private _position = { x: 0, y: 0 };
 
@@ -20,6 +23,7 @@ export class Bobum {
 
     constructor(params: BobumParams) {
         this.name = params.name;
+        this.color = params.color;
         this._position = { x: params.position.x, y: params.position.y };
         this._velocity = { x: params.velocity.x, y: params.velocity.y };
         this._radius = params.radius;
@@ -53,6 +57,7 @@ export class Bobum {
 
 export interface BobumParams {
     name: string;
+    color: string;
     position: { x: number, y: number };
     velocity: { x: number, y: number };
     radius: number;

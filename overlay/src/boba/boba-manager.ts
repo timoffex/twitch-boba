@@ -36,6 +36,7 @@ export class BobaManager {
 
         const bobum = new Bobum({
             name: username,
+            color: `hsl(${Math.round(Math.random() * 360)} 80% 90%)`,
             position: initialPosition,
             velocity: { x: 0, y: 0 },
             radius: 2,

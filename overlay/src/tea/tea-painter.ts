@@ -35,9 +35,8 @@ export class TeaPainter implements SceneCanvasPainter {
         const gradient = ctx.createLinearGradient(
             canvas.width / 2, 0,
             canvas.width / 2, this._sceneCoords.pixelsPerUnit * this._tea.teaHeight);
-        gradient.addColorStop(0.0, 'rgba(152,109,0,0.5)');
-        gradient.addColorStop(0.4, 'rgba(140,94,0,0.5)');
-        gradient.addColorStop(1.0, 'rgba(255,219,164,0.5)');
+        gradient.addColorStop(0.0, 'hsl(240 80% 70% / 80%)');
+        gradient.addColorStop(1.0, 'hsl(180 80% 70% / 80%)');
 
         this.paintWave(canvas, ctx, {
             gradient: gradient,
@@ -53,9 +52,8 @@ export class TeaPainter implements SceneCanvasPainter {
         const gradient = ctx.createLinearGradient(
             canvas.width / 2, 0,
             canvas.width / 2, this._sceneCoords.pixelsPerUnit * this._tea.teaHeight);
-        gradient.addColorStop(0.0, 'rgba(152,109,0,0.5)');
-        gradient.addColorStop(0.4, 'rgba(140,94,0,0.5)');
-        gradient.addColorStop(1.0, 'rgba(255,219,164,0.5)');
+        gradient.addColorStop(0.0, 'hsl(240 80% 70% / 40%)');
+        gradient.addColorStop(1.0, 'hsl(180 80% 70% / 40%)');
 
         this.paintWave(canvas, ctx, {
             gradient: gradient,
